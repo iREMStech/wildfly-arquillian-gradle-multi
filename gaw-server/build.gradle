@@ -1,0 +1,4 @@
+// 
+if (!hasProperty('buildProfile')) ext.buildProfile = 'managed-wildfly'
+apply from: "profile-${buildProfile}.gradle"
+

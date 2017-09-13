@@ -1,0 +1,15 @@
+// Remote wildfly
+configurations {
+	compileOnly.extendsFrom jee
+}
+
+dependencies {
+     
+    testCompile "org.wildfly.arquillian:wildfly-arquillian-container-remote:${wfArqContainerVersion}"
+    testCompile "org.jboss.arquillian.protocol:arquillian-protocol-servlet"
+}
+
+test {
+    systemProperty 'arquillian.launch', 'wildfly-remote'  
+}
+

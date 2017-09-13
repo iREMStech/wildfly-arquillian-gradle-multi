@@ -1,0 +1,61 @@
+buildscript {
+  	repositories {
+    		maven {
+      		url "https://plugins.gradle.org/m2/"
+    		}
+  	}
+  	dependencies {
+    			classpath "com.netflix.nebula:nebula-dependency-recommender:5.0.0"
+  	}
+}
+subprojects {
+	apply plugin: 'nebula.dependency-recommender'
+	apply plugin: 'java'
+	
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	
+	group = 'ansis.irems'
+	version = '1.0.0-SNAPSHOT'
+
+	repositories {
+    		jcenter()
+    		mavenCentral()
+	}
+
+	dependencyRecommendations {
+		mavenBom module: "org.jboss.arquillian:arquillian-bom:${arquillianVersion}"
+	}
+
+	configurations {
+		jee
+		hibernate
+	}
+
+	dependencies {
+		jee "javax:javaee-api:${javaeeVersion}"	 	
+    		hibernate "org.hibernate:hibernate-core:$hibernateVersion"
+	
+	    testCompile "junit:junit:${junitVersion}"
+	    testCompile "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+    		testCompile "org.jboss.arquillian.junit:arquillian-junit-container"
+	}
+}
+project(':gaw-server') {
+//	apply plugin: 'war'
+
+    dependencies {
+ 		compile project(':gaw-model')
+	}    
+}
+
+project(':gaw-model') {
+	configurations {
+		compileOnly.extendsFrom hibernate
+	}
+    dependencies {
+ 		compileOnly group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
+
+	}    
+}
+

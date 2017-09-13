@@ -1,0 +1,2 @@
+rootProject.name = 'wildfly-arquillian-gradle-multi'
+include 'gaw-server', 'gaw-model'

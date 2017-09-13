@@ -1,0 +1,14 @@
+// Embedded wildfly
+configurations {
+	compile.extendsFrom jee, hibernate
+}
+
+dependencies {
+     
+    testRuntime "org.wildfly.arquillian:wildfly-arquillian-container-embedded:${wfArqContainerVersion}"
+}
+
+test {
+    systemProperty 'java.util.logging.manager', 'org.jboss.logmanager.LogManager'  
+    systemProperty 'arquillian.launch', 'wildfly-embedded'  
+}

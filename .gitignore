@@ -1,0 +1,5 @@
+/.gradle/
+/gaw-server/build/
+/gaw-model/build/
+/gaw-server/bin/
+/gaw-model/bin/
