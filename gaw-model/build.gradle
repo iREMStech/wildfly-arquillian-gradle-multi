@@ -23,3 +23,43 @@ liquibase {
 }
 
 
+//println sourceSets.test.runtimeClasspath.files
+//println sourceSets.main.output.resourcesDir
+sourceSets {
+	testPersistenceLocal {
+		runtimeClasspath -= files(sourceSets.main.output.resourcesDir) 
+	}
+}
+//println sourceSets.test.runtimeClasspath.files
+
+sourceSets {
+    testPersistenceLocal {
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+ 		runtimeClasspath -= files(sourceSets.main.output.resourcesDir) 
+        java.srcDir file('src/testPersistenceLocal/java')
+        resources.srcDir file('src/testPersistenceLocal/resources')
+    }
+}
+
+configurations {
+	testPersistenceLocalCompile.extendsFrom testCompile
+	testPersistenceLocalRuntime.extendsFrom testRuntime	
+}
+
+/*
+dependencies {
+    testPersistenceLocalCompile postgres
+}
+*/
+
+task testPersistenceLocal(type: Test) {
+    group 'Verification'
+    description 'Runs the no container persistence tests.'
+    testClassesDir = sourceSets.testPersistenceLocal.output.classesDir
+    classpath = sourceSets.testPersistenceLocal.runtimeClasspath
+    // outputs.upToDateWhen { false }
+}
+
+check.dependsOn testPersistenceLocal
+testPersistenceLocal.mustRunAfter test

@@ -14,7 +14,7 @@ import java.util.List;
  * automatic transactional dirty checking of business objects in persistent
  * state.
  */
-public interface GenericDAO<T, ID extends Serializable>
+public interface IGenericDAO<T, ID extends Serializable>
     extends Serializable {
 
     void joinTransaction();
@@ -24,6 +24,8 @@ public interface GenericDAO<T, ID extends Serializable>
     T findById(ID id, LockModeType lockModeType);
 
     List<T> findAll();
+    
+    void create(T entity);
 
     T makePersistent(T entity);
 

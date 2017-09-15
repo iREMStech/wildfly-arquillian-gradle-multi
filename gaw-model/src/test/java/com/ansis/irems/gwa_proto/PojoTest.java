@@ -14,5 +14,6 @@ public class PojoTest {
 		  assertThat(underTest.getName(), is("cool"));
 		  assertThat(underTest.getTemplate(), is("Life is cool {0}!"));
 		  assertThat(underTest.getRank(), is(1));
+		  System.out.println(underTest);
 		}
 }

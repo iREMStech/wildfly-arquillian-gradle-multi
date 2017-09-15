@@ -1,5 +1,6 @@
 package com.ansis.irems.gwa_proto;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -17,10 +18,11 @@ import org.hibernate.annotations.GenericGenerator;
 /**
  * POJO class for defining message template
  *  for example ("hello", "Hello, {0}!")
+ *  rank is the order, popularity or whatever
  */
 @Entity
 @Table(name="MESSAGE_TEMPLATE")
-public class MessageTemplate {
+public class MessageTemplate implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "UUID")
@@ -39,8 +41,11 @@ public class MessageTemplate {
 	protected String template;
 	
 	@Column
-	private Integer rank;
-		
+	protected Integer rank;
+	
+	public MessageTemplate() {		
+	}
+	
 	public MessageTemplate(String name, String template, Integer rank) {
 		this.name = name;
 		this.template = template;
@@ -69,5 +74,9 @@ public class MessageTemplate {
 	}
 	public void setRank(Integer rank) {
 		this.rank = rank;
+	}
+	@Override
+	public String toString() {
+		return "MessageTemplate [id=" + id + ", name=" + name + ", template=" + template + ", rank=" + rank + "]";
 	}
 }

@@ -3,3 +3,4 @@
 /gaw-model/build/
 /gaw-server/bin/
 /gaw-model/bin/
+/gaw-model/gradle.properties

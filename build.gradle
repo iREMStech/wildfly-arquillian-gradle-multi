@@ -30,14 +30,19 @@ subprojects {
 	configurations {
 		jee
 		hibernate
+		cdi
+		postgresql
 	}
 
 	dependencies {
 		jee "javax:javaee-api:${javaeeVersion}"	 	
+		cdi "javax.enterprise:cdi-api:${cdiVersion}"
     		hibernate "org.hibernate:hibernate-core:$hibernateVersion"
+    		hibernate "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+    		postgresql "org.postgresql:postgresql:$postgresqlVersion"
 	
 	    testCompile "junit:junit:${junitVersion}"
-	    testCompile "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+	    testCompile "org.hamcrest:hamcrest-library:${hamcrestVersion}"
     		testCompile "org.jboss.arquillian.junit:arquillian-junit-container"
 	}
 }
@@ -51,11 +56,11 @@ project(':gaw-server') {
 
 project(':gaw-model') {
 	configurations {
-		compileOnly.extendsFrom hibernate
+		compileOnly.extendsFrom hibernate,jee
+		testCompile.extendsFrom hibernate, postgresql, cdi, jee
 	}
     dependencies {
  		compileOnly group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
-
 	}    
 }
 

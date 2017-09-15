@@ -2,6 +2,7 @@ package com.ansis.irems.gwa_proto.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.List;
@@ -9,19 +10,22 @@ import java.util.List;
 import static javax.persistence.LockModeType.*;
 
 public abstract class GenericDAOImpl<T, ID extends Serializable>
-        implements GenericDAO<T, ID> {
+        implements IGenericDAO<T, ID> {
 
 	private static final long serialVersionUID = 1L;
-	protected final EntityManager em;
+	@PersistenceContext	protected EntityManager em;
     protected final Class<T> entityClass;
 
-    protected GenericDAOImpl(EntityManager em, Class<T> entityClass) {
-        this.em = em;
+    protected GenericDAOImpl( Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
     public EntityManager getEntityManager() {
         return em;
+    }
+
+    public void setEntityManager(EntityManager em) {
+        this.em = em;
     }
 
     @Override
@@ -47,6 +51,11 @@ public abstract class GenericDAOImpl<T, ID extends Serializable>
         return em.createQuery(c).getResultList();
     }
 
+    @Override
+    public void create(T instance) {
+        em.persist(instance);
+    }
+    
     @Override
     public T makePersistent(T instance) {
         // merge() handles transient AND detached instances
