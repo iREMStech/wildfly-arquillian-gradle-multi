@@ -22,16 +22,6 @@ liquibase {
     }
 }
 
-
-//println sourceSets.test.runtimeClasspath.files
-//println sourceSets.main.output.resourcesDir
-sourceSets {
-	testPersistenceLocal {
-		runtimeClasspath -= files(sourceSets.main.output.resourcesDir) 
-	}
-}
-//println sourceSets.test.runtimeClasspath.files
-
 sourceSets {
     testPersistenceLocal {
         compileClasspath += main.output + test.output

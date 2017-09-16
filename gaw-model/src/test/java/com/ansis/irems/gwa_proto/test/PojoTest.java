@@ -1,10 +1,12 @@
-package com.ansis.irems.gwa_proto;
+package com.ansis.irems.gwa_proto.test;
 
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+
+import com.ansis.irems.gwa_proto.model.MessageTemplate;
 
 public class PojoTest {
 

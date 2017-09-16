@@ -12,10 +12,9 @@ import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-
-import com.ansis.irems.gwa_proto.dao.IMessageTemplateDAO;
+ 
 import com.ansis.irems.gwa_proto.dao.MessageTemplateDAOImpl;
+import com.ansis.irems.gwa_proto.model.MessageTemplate;
 
 
 public class PersistenceTest {

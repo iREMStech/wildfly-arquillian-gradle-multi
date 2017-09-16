@@ -45,6 +45,11 @@ subprojects {
 	    testCompile "org.hamcrest:hamcrest-library:${hamcrestVersion}"
     		testCompile "org.jboss.arquillian.junit:arquillian-junit-container"
 	}
+	
+	if (!rootProject.hasProperty('buildProfile')) ext.buildProfile = 'managed-wildfly'
+	apply from: "$rootProject.projectDir/profile-${buildProfile}.gradle"
+	println "$rootProject.projectDir/profile-${buildProfile}.gradle"
+	
 }
 project(':gaw-server') {
 //	apply plugin: 'war'

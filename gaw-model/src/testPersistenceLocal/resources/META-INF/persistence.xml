@@ -6,7 +6,7 @@
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="irems_proto_no_container">
     		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    		<class>com.ansis.irems.gwa_proto.MessageTemplate</class>
+    		<class>com.ansis.irems.gwa_proto.model.MessageTemplate</class>
     		<properties>
       		<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
       		<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/irems_proto" />

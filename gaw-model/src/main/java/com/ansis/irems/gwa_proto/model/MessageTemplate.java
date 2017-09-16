@@ -1,4 +1,4 @@
-package com.ansis.irems.gwa_proto;
+package com.ansis.irems.gwa_proto.model;
 
 import java.io.Serializable;
 import java.util.UUID;
