@@ -3,11 +3,11 @@
 --changeset iremstech:1
 CREATE TABLE MESSAGE_TEMPLATE
 (
-  id uuid DEFAULT uuid_generate_v4(),
-  name VARCHAR(12) NOT NULL,
-  template TEXT,
-  rank INTEGER,
-  PRIMARY KEY (id)
+  ID UUID DEFAULT uuid_generate_v4(),
+  NAME VARCHAR(12) NOT NULL,
+  TEMPLATE TEXT,
+  RANK INTEGER,
+  PRIMARY KEY (ID)
 );
 
 --rollback DROP TABLE IF EXISTS MESSAGE_TEMPLATE;

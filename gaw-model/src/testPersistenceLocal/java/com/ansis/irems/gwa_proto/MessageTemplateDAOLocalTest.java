@@ -17,7 +17,7 @@ import com.ansis.irems.gwa_proto.dao.MessageTemplateDAOImpl;
 import com.ansis.irems.gwa_proto.model.MessageTemplate;
 
 
-public class PersistenceTest {
+public class MessageTemplateDAOLocalTest {
 
 	private EntityManager em;
 	MessageTemplateDAOImpl mtDAO;
@@ -30,7 +30,7 @@ public class PersistenceTest {
 	}
 	
 	@Test
-	public void testCreate() throws InstantiationException, IllegalAccessException, ClassNotFoundException {			
+	public void testCreate() throws Exception {			
 		MessageTemplate mt = new MessageTemplate("cool", "Life is cool {0}!", 1);
 		em.getTransaction().begin();
 		// check empty id

@@ -10,8 +10,8 @@
     		<properties>
       		<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
       		<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/irems_proto" />
-      		<property name="javax.persistence.jdbc.user" value="iremstech" />
-      		<property name="javax.persistence.jdbc.password" value="irems2017" />
+      		<property name="javax.persistence.jdbc.user" value="useername" />
+      		<property name="javax.persistence.jdbc.password" value="password" />
             <!--
 	            	<property name="hibernate.hbm2ddl.auto" value="validate"/> 
              -->

@@ -28,4 +28,8 @@
         </configuration>
     </container>
 
+	<extension qualifier="persistence-dbunit">
+    		<property name="datatypeFactory">org.dbunit.ext.postgresql.PostgresqlDataTypeFactory</property>
+	</extension>
+
 </arquillian>

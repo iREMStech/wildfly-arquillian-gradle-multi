@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<message_template id="uuid'31e1ef73-9e0d-463d-a4de-40313f04d402'" name="welcome" template="Welcome {0}!" rank="1" />
+	<message_template id="uuid'8ba7973a-d92e-42ed-82dc-9d9cabaf008d'" name="nice" template="My Dear {0}!" rank="2" />
+</dataset>

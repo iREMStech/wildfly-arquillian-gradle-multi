@@ -9,5 +9,7 @@
 
     <include file="scripts/001.irems.sql" relativeToChangelogFile="true"/>
     <include file="scripts/002.irems.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/003.irems.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/004.irems.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -3,10 +3,14 @@ package com.ansis.irems.gwa_proto.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,13 +20,11 @@ import org.hibernate.annotations.GenericGenerator;
 //import java.text.MessageFormat;
 
 /**
- * POJO class for defining message template
- *  for example ("hello", "Hello, {0}!")
- *  rank is the order, popularity or whatever
+ * POJO class for defining welcome messages for guests
  */
 @Entity
-@Table(name="MESSAGE_TEMPLATE")
-public class MessageTemplate implements Serializable {
+@Table(name="WELCOME_BOARD")
+public class WelcomeBoard implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,21 +38,17 @@ public class MessageTemplate implements Serializable {
 	  
 	@NotNull
 	@Column(nullable = false)
-	@Size(max = 12)
+	@Size(max = 100)
 	protected String name;
+		
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+	@JoinColumn(name = "MESSAGE_TEMPLATE_ID", nullable = true)
+	protected MessageTemplate template;
 	
-	@Column
-	protected String template;
+	public WelcomeBoard() {}
 	
-	@Column
-	protected Integer rank;
-	
-	public MessageTemplate() {}
-	
-	public MessageTemplate(String name, String template, Integer rank) {
+	public WelcomeBoard(String name) {
 		this.name = name;
-		this.template = template;
-		this.rank = rank;
 	}
 	public UUID getId() {
 		return id;
@@ -64,21 +62,18 @@ public class MessageTemplate implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getTemplate() {
+
+	public MessageTemplate getTemplate() {
 		return template;
 	}
-	public void setTemplate(String template) {
+
+	public void setTemplate(MessageTemplate template) {
 		this.template = template;
 	}
-	public Integer getRank() {
-		return rank;
-	}
-	public void setRank(Integer rank) {
-		this.rank = rank;
-	}
+
 	@Override
 	public String toString() {
-		return "MessageTemplate [id=" + id + ", name=" + name + ", template=" + template + ", rank=" + rank + "]";
+		return "WelcomeBoard [id=" + id + ", name=" + name + ", template=" + template + "]";
 	}
 
 	@Override
@@ -87,7 +82,6 @@ public class MessageTemplate implements Serializable {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((rank == null) ? 0 : rank.hashCode());
 		result = prime * result + ((template == null) ? 0 : template.hashCode());
 		return result;
 	}
@@ -100,7 +94,7 @@ public class MessageTemplate implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MessageTemplate other = (MessageTemplate) obj;
+		WelcomeBoard other = (WelcomeBoard) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -110,11 +104,6 @@ public class MessageTemplate implements Serializable {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (rank == null) {
-			if (other.rank != null)
-				return false;
-		} else if (!rank.equals(other.rank))
 			return false;
 		if (template == null) {
 			if (other.template != null)

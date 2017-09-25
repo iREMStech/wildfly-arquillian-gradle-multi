@@ -66,6 +66,9 @@ project(':gaw-model') {
 	}
     dependencies {
  		compileOnly group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
+		//testCompile group: 'org.jboss.arquillian.extension', name: 'arquillian-persistence-dbunit', version: '1.0.0.Alpha7'
+		testCompile group: 'org.arquillian.ape', name: 'arquillian-ape-sql-container-dbunit', version: '2.0.0-alpha.4'
+		
 	}    
 }
 
